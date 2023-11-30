@@ -20,6 +20,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api/v1", apiRoute);
+app.use("/", (req, res) => {
+  return res.status(200).json("Welcome to API");
+});
+app.use("*", (req, res) => {
+  return res.status(404).json("Not Found");
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
